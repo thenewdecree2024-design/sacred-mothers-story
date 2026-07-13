@@ -8,7 +8,13 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&amp;family=Inter:wght@300;400;500&amp;display=swap');
+        
+        :root {
+            --cream: #FDF8F3;
+            --gold: #C9A86C;
+            --deep: #3F2E1E;
+        }
         
         body {
             font-family: 'Inter', system_ui, sans-serif;
@@ -22,6 +28,11 @@
 
         .sacred-gradient {
             background: linear-gradient(135deg, #FDF8F3 0%, #F5EDE3 100%);
+        }
+
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, #C9A86C, transparent);
         }
 
         .mother-card {
@@ -41,21 +52,49 @@
             transform: translateY(-2px);
             box-shadow: 0 10px 15px -3px rgb(201 168 108 / 0.3);
         }
+
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #C9A86C;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover:after {
+            width: 100%;
+        }
+
+        .story-text {
+            font-size: 1.05rem;
+            line-height: 1.85;
+        }
     </style>
 </head>
 <body class="bg-[#FDF8F3] text-[#3F2E1E]">
 
-    <!-- ==================== NAVBAR ==================== -->
+    <!-- ==================== SECTION: NAVBAR ==================== -->
     <nav class="bg-white/95 backdrop-blur-md border-b border-[#EDE4D8] sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-6">
             <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
                 <div class="flex items-center gap-x-3">
                     <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-[#C9A86C] to-[#A67C52] flex items-center justify-center">
                         <i class="fa-solid fa-infinity text-white text-3xl"></i>
                     </div>
-                    <span class="heading-serif text-3xl tracking-tight">Sacred Mothers</span>
+                    <div>
+                        <span class="heading-serif text-3xl tracking-tight">Sacred Mothers</span>
+                    </div>
                 </div>
 
+                <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center gap-x-9 text-sm font-medium">
                     <a href="#stories" class="nav-link px-1 text-[#3F2E1E] hover:text-[#C9A86C]">Stories</a>
                     <a href="#mothers" class="nav-link px-1 text-[#3F2E1E] hover:text-[#C9A86C]">The Mothers</a>
@@ -69,13 +108,20 @@
                         Begin the Journey
                     </button>
                 </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden w-10 h-10 flex items-center justify-center text-[#3F2E1E]">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
             </div>
         </div>
     </nav>
+    <!-- ==================== END SECTION: NAVBAR ==================== -->
 
-    <!-- ==================== HERO ==================== -->
+    <!-- ==================== SECTION: HERO ==================== -->
     <header class="relative h-[100dvh] min-h-[640px] flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://picsum.photos/id/1018/2000/1200')">
+        <div class="absolute inset-0 bg-cover bg-center" 
+             style="background-image: url('https://picsum.photos/id/1018/2000/1200')">
             <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50"></div>
         </div>
         
@@ -86,48 +132,438 @@
             </div>
             
             <h1 class="heading-serif text-6xl md:text-7xl lg:text-8xl text-white tracking-tighter leading-none mb-6">
-                The Sacred Mothers Story
+                The Sacred<br>Mothers Story
             </h1>
             
             <p class="max-w-md mx-auto text-xl text-white/90 mb-10">
-                Exploring the timeless wisdom and stories of the world's sacred mothers and goddesses.
+                Where the ancient wisdom of the Divine Mothers awakens the sacred within you.
             </p>
             
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
                 <button onclick="document.getElementById('mothers').scrollIntoView({ behavior: 'smooth' })" 
                         class="px-10 py-4 rounded-3xl bg-white text-[#3F2E1E] font-semibold text-lg flex items-center justify-center gap-x-3 hover:bg-[#C9A86C] hover:text-white transition-all sacred-button">
-                    Meet the Mothers
+                    <span>Meet the Mothers</span>
                     <i class="fa-solid fa-arrow-right"></i>
+                </button>
+                
+                <button onclick="document.getElementById('stories').scrollIntoView({ behavior: 'smooth' })" 
+                        class="px-8 py-4 rounded-3xl border-2 border-white/70 text-white font-medium text-lg hover:bg-white/10 transition-all flex items-center justify-center gap-x-2">
+                    <span>Begin Reading</span>
+                </button>
+            </div>
+            
+            <div class="mt-12 flex justify-center">
+                <div class="flex items-center gap-x-2 text-white/60 text-sm">
+                    <div class="flex -space-x-1">
+                        <div class="w-6 h-6 rounded-full border border-white/40 overflow-hidden"><img src="https://picsum.photos/id/1005/24/24" class="object-cover"></div>
+                        <div class="w-6 h-6 rounded-full border border-white/40 overflow-hidden"><img src="https://picsum.photos/id/1009/24/24" class="object-cover"></div>
+                        <div class="w-6 h-6 rounded-full border border-white/40 overflow-hidden"><img src="https://picsum.photos/id/1011/24/24" class="object-cover"></div>
+                    </div>
+                    <span>Join 12,847 sisters on this journey</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center text-white/70 text-xs tracking-widest">
+            <span>SCROLL TO BEGIN</span>
+            <i class="fa-solid fa-chevron-down mt-1 animate-bounce"></i>
+        </div>
+    </header>
+    <!-- ==================== END SECTION: HERO ==================== -->
+
+    <!-- ==================== SECTION: WELCOME / INTRO ==================== -->
+    <section id="about" class="max-w-4xl mx-auto px-6 pt-20 pb-16">
+        <div class="text-center mb-12">
+            <span class="uppercase tracking-[4px] text-[#C9A86C] text-sm font-semibold">Chapter One</span>
+            <h2 class="heading-serif text-5xl md:text-6xl tracking-tight mt-3">Welcome to the Story</h2>
+        </div>
+        
+        <div class="prose prose-lg max-w-none text-[#4A3F32] story-text">
+            <p class="text-xl leading-relaxed">For thousands of years, across every culture and continent, a powerful archetype has watched over humanity — the <strong>Sacred Mother</strong>. She is Isis and Mary, Durga and Yemaya, Pachamama and Tara. She is the fierce protector, the infinite nurturer, the wise teacher, and the great transformer.</p>
+            
+            <p>This blog is a living temple dedicated to remembering her stories. Here we explore the myths, the symbols, the teachings, and the living presence of the Divine Mothers so that we may reclaim the sacred feminine within ourselves and our world.</p>
+        </div>
+        
+        <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white rounded-3xl p-8 border border-[#EDE4D8]">
+                <div class="text-[#C9A86C] text-3xl mb-4"><i class="fa-solid fa-book-open"></i></div>
+                <h4 class="font-semibold text-xl mb-2">Remember</h4>
+                <p class="text-[#5C513F]">Reclaim the ancient stories that were almost forgotten.</p>
+            </div>
+            <div class="bg-white rounded-3xl p-8 border border-[#EDE4D8]">
+                <div class="text-[#C9A86C] text-3xl mb-4"><i class="fa-solid fa-heart"></i></div>
+                <h4 class="font-semibold text-xl mb-2">Reconnect</h4>
+                <p class="text-[#5C513F]">Feel the living presence of the Mothers in your daily life.</p>
+            </div>
+            <div class="bg-white rounded-3xl p-8 border border-[#EDE4D8]">
+                <div class="text-[#C9A86C] text-3xl mb-4"><i class="fa-solid fa-seedling"></i></div>
+                <h4 class="font-semibold text-xl mb-2">Rise</h4>
+                <p class="text-[#5C513F]">Awaken the sacred mother within you.</p>
+            </div>
+        </div>
+    </section>
+    <!-- ==================== END SECTION: WELCOME / INTRO ==================== -->
+
+    <!-- ==================== SECTION: THE SACRED MOTHERS (CARDS) ==================== -->
+    <section id="mothers" class="max-w-7xl mx-auto px-6 py-16 bg-white border-y border-[#EDE4D8]">
+        <div class="text-center mb-12">
+            <span class="text-[#C9A86C] tracking-[3px] text-sm font-semibold">THE GREAT COUNCIL</span>
+            <h2 class="heading-serif text-5xl md:text-6xl tracking-tight mt-2">Meet the Sacred Mothers</h2>
+            <p class="mt-4 max-w-md mx-auto text-[#5C513F]">Timeless beings whose stories still guide and protect us today.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- Mother Card: Isis -->
+            <div class="mother-card bg-[#FDF8F3] rounded-3xl overflow-hidden border border-[#EDE4D8] group">
+                <div class="h-56 overflow-hidden">
+                    <img src="https://picsum.photos/id/1005/600/400" alt="Isis - Egyptian Sacred Mother" 
+                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                </div>
+                <div class="p-8">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="px-4 py-1 text-xs font-semibold tracking-widest bg-[#C9A86C]/10 text-[#C9A86C] rounded-2xl">EGYPT</span>
+                    </div>
+                    <h3 class="heading-serif text-3xl mb-2">Isis</h3>
+                    <p class="text-[#5C513F] mb-5">The Throne. Goddess of magic, motherhood, and resurrection. She reassembled Osiris and taught humanity the mysteries of life and death.</p>
+                    <button onclick="showMotherModal('Isis', 'Egyptian', 'Isis is the archetypal Sacred Mother of magic and resurrection. When her beloved Osiris was murdered and dismembered, Isis searched the earth to gather his pieces and breathe life back into him. She is the ultimate alchemist of love and devotion. Her story teaches us that nothing is beyond restoration when held in the heart of the Mother.')" 
+                            class="text-[#C9A86C] font-semibold flex items-center gap-x-2 group-hover:gap-x-3 transition-all">
+                        Read Her Story <i class="fa-solid fa-arrow-right text-sm"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mother Card: Durga -->
+            <div class="mother-card bg-[#FDF8F3] rounded-3xl overflow-hidden border border-[#EDE4D8] group">
+                <div class="h-56 overflow-hidden">
+                    <img src="https://picsum.photos/id/1011/600/400" alt="Durga - Hindu Sacred Mother" 
+                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                </div>
+                <div class="p-8">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="px-4 py-1 text-xs font-semibold tracking-widest bg-[#C9A86C]/10 text-[#C9A86C] rounded-2xl">HINDU</span>
+                    </div>
+                    <h3 class="heading-serif text-3xl mb-2">Durga</h3>
+                    <p class="text-[#5C513F] mb-5">The Invincible. The fierce mother who rides a lion and destroys injustice. She was created by the combined power of all gods to protect the universe.</p>
+                    <button onclick="showMotherModal('Durga', 'Hindu', 'Durga represents the fierce protective love of the Divine Mother. When demons threatened creation, all the gods combined their powers to birth her. She rides a lion and wields weapons in her many arms. Her story reminds us that true compassion sometimes requires fierce boundaries and courageous action.')" 
+                            class="text-[#C9A86C] font-semibold flex items-center gap-x-2 group-hover:gap-x-3 transition-all">
+                        Read Her Story <i class="fa-solid fa-arrow-right text-sm"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mother Card: Mother Mary / Guadalupe -->
+            <div class="mother-card bg-[#FDF8F3] rounded-3xl overflow-hidden border border-[#EDE4D8] group">
+                <div class="h-56 overflow-hidden">
+                    <img src="https://picsum.photos/id/1009/600/400" alt="Our Lady of Guadalupe - Sacred Mother" 
+                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                </div>
+                <div class="p-8">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="px-4 py-1 text-xs font-semibold tracking-widest bg-[#C9A86C]/10 text-[#C9A86C] rounded-2xl">CHRISTIAN</span>
+                    </div>
+                    <h3 class="heading-serif text-3xl mb-2">Our Lady of Guadalupe</h3>
+                    <p class="text-[#5C513F] mb-5">The compassionate mother who appeared to Juan Diego in Mexico. She is the patroness of the Americas and a symbol of mercy and unity.</p>
+                    <button onclick="showMotherModal('Our Lady of Guadalupe', 'Christian / Aztec', 'In 1531, the Virgin Mary appeared as a mestiza woman on Tepeyac Hill to the Indigenous man Juan Diego. She left her image on his tilma — a miracle that continues to this day. She is the mother who speaks to the marginalized and holds all her children with infinite tenderness.')" 
+                            class="text-[#C9A86C] font-semibold flex items-center gap-x-2 group-hover:gap-x-3 transition-all">
+                        Read Her Story <i class="fa-solid fa-arrow-right text-sm"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mother Card: Yemaya -->
+            <div class="mother-card bg-[#FDF8F3] rounded-3xl overflow-hidden border border-[#EDE4D8] group">
+                <div class="h-56 overflow-hidden">
+                    <img src="https://picsum.photos/id/160/600/400" alt="Yemaya - Yoruba Sacred Mother" 
+                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                </div>
+                <div class="p-8">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="px-4 py-1 text-xs font-semibold tracking-widest bg-[#C9A86C]/10 text-[#C9A86C] rounded-2xl">YORUBA / SANTERÍA</span>
+                    </div>
+                    <h3 class="heading-serif text-3xl mb-2">Yemaya</h3>
+                    <p class="text-[#5C513F] mb-5">Mother of the Ocean. She gave birth to the sun, moon, and stars. Fiercely protective of women and children, she rules the waters of life.</p>
+                    <button onclick="showMotherModal('Yemaya', 'Yoruba', 'Yemaya is the great mother of the sea. She is nurturing yet powerful — the one who carries all the sorrows and joys of women. Her waves wash away pain and her depths hold ancient wisdom. She teaches us to flow with life while staying rooted in our truth.')" 
+                            class="text-[#C9A86C] font-semibold flex items-center gap-x-2 group-hover:gap-x-3 transition-all">
+                        Read Her Story <i class="fa-solid fa-arrow-right text-sm"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mother Card: Pachamama -->
+            <div class="mother-card bg-[#FDF8F3] rounded-3xl overflow-hidden border border-[#EDE4D8] group">
+                <div class="h-56 overflow-hidden">
+                    <img src="https://picsum.photos/id/1016/600/400" alt="Pachamama - Andean Sacred Mother" 
+                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                </div>
+                <div class="p-8">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="px-4 py-1 text-xs font-semibold tracking-widest bg-[#C9A86C]/10 text-[#C9A86C] rounded-2xl">ANDEAN</span>
+                    </div>
+                    <h3 class="heading-serif text-3xl mb-2">Pachamama</h3>
+                    <p class="text-[#5C513F] mb-5">Mother Earth herself. The living spirit of the land who provides food, water, and life. Honored with offerings of coca leaves and gratitude.</p>
+                    <button onclick="showMotherModal('Pachamama', 'Andean Indigenous', 'Pachamama is the living Earth. She is not separate from us — we are her children. The Andean people offer her chicha and coca leaves in reciprocity. Her story calls us back into right relationship with the land, with our bodies, and with all life.')" 
+                            class="text-[#C9A86C] font-semibold flex items-center gap-x-2 group-hover:gap-x-3 transition-all">
+                        Read Her Story <i class="fa-solid fa-arrow-right text-sm"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mother Card: Tara -->
+            <div class="mother-card bg-[#FDF8F3] rounded-3xl overflow-hidden border border-[#EDE4D8] group">
+                <div class="h-56 overflow-hidden">
+                    <img src="https://picsum.photos/id/201/600/400" alt="Tara - Buddhist Sacred Mother" 
+                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                </div>
+                <div class="p-8">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="px-4 py-1 text-xs font-semibold tracking-widest bg-[#C9A86C]/10 text-[#C9A86C] rounded-2xl">BUDDHIST</span>
+                    </div>
+                    <h3 class="heading-serif text-3xl mb-2">Tara</h3>
+                    <p class="text-[#5C513F] mb-5">The Mother of all Buddhas. She has 21 forms and acts with swift compassion. Her eyes see all suffering and her hands are always ready to help.</p>
+                    <button onclick="showMotherModal('Tara', 'Buddhist', 'Green Tara and White Tara embody enlightened feminine energy. She vowed to always return in female form to help beings. Her mantra “Om Tare Tuttare Ture Soha” is one of the most powerful calls for swift compassionate action in the world.')" 
+                            class="text-[#C9A86C] font-semibold flex items-center gap-x-2 group-hover:gap-x-3 transition-all">
+                        Read Her Story <i class="fa-solid fa-arrow-right text-sm"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ==================== END SECTION: THE SACRED MOTHERS ==================== -->
+
+    <!-- ==================== SECTION: THE STORY (NARRATIVE) ==================== -->
+    <section id="stories" class="max-w-4xl mx-auto px-6 py-20">
+        <div class="text-center mb-12">
+            <span class="text-[#C9A86C] tracking-[3px] text-sm font-semibold">THE LIVING MYTH</span>
+            <h2 class="heading-serif text-5xl tracking-tight mt-2">The Story That Holds Us All</h2>
+        </div>
+        
+        <div class="bg-white rounded-3xl p-10 md:p-14 border border-[#EDE4D8] shadow-sm">
+            <div class="prose prose-lg max-w-none text-[#4A3F32] story-text">
+                <p>In the beginning, before there were names for gods and goddesses, there was only the Great Mother. She was the dark fertile soil and the bright life-giving waters. She dreamed the stars into being and sang the first song of creation.</p>
+                
+                <p>From her womb came every tradition, every prayer, every mother who ever rocked a child to sleep. She has worn a thousand faces — Isis in Egypt, Durga on her lion, Yemaya in the waves, Mary holding the light of the world, Pachamama breathing through the mountains.</p>
+                
+                <p class="font-medium text-[#3F2E1E]">Her story is not finished. It continues through you.</p>
+                
+                <p>Every time you choose compassion over fear, every time you protect what is sacred, every time you create beauty from pain — you are living her story.</p>
+            </div>
+        </div>
+    </section>
+    <!-- ==================== END SECTION: THE STORY ==================== -->
+
+    <!-- ==================== SECTION: JOURNAL / BLOG PREVIEWS ==================== -->
+    <section id="journal" class="max-w-7xl mx-auto px-6 py-16 bg-white border-y border-[#EDE4D8]">
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-10">
+            <div>
+                <span class="text-[#C9A86C] tracking-[3px] text-sm font-semibold">THE JOURNAL</span>
+                <h2 class="heading-serif text-5xl tracking-tight">Recent Reflections</h2>
+            </div>
+            <a href="#" class="mt-4 md:mt-0 inline-flex items-center text-[#C9A86C] font-semibold hover:underline">View all entries →</a>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Journal Card 1 -->
+            <div class="group">
+                <div class="aspect-video rounded-2xl overflow-hidden mb-5">
+                    <img src="https://picsum.photos/id/29/800/450" class="w-full h-full object-cover group-hover:scale-105 transition-transform" alt="">
+                </div>
+                <span class="text-xs text-[#C9A86C] font-semibold">MOTHER WOUND • 12 JAN 2026</span>
+                <h3 class="font-semibold text-2xl mt-2 mb-3 group-hover:text-[#C9A86C] transition-colors">The Mother Wound as Initiation into the Divine Feminine</h3>
+                <p class="text-[#5C513F] line-clamp-3">How our deepest pain with our earthly mothers can become the very doorway to remembering the Great Mother within us.</p>
+                <div class="mt-4 text-sm font-medium text-[#C9A86C]">Read reflection →</div>
+            </div>
+            
+            <!-- Journal Card 2 -->
+            <div class="group">
+                <div class="aspect-video rounded-2xl overflow-hidden mb-5">
+                    <img src="https://picsum.photos/id/251/800/450" class="w-full h-full object-cover group-hover:scale-105 transition-transform" alt="">
+                </div>
+                <span class="text-xs text-[#C9A86C] font-semibold">EVERYDAY SACRED • 5 JAN 2026</span>
+                <h3 class="font-semibold text-2xl mt-2 mb-3 group-hover:text-[#C9A86C] transition-colors">How to Honor the Sacred Mother in Daily Life</h3>
+                <p class="text-[#5C513F] line-clamp-3">Simple rituals, prayers, and ways of seeing that turn ordinary motherhood and womanhood into living devotion.</p>
+                <div class="mt-4 text-sm font-medium text-[#C9A86C]">Read reflection →</div>
+            </div>
+            
+            <!-- Journal Card 3 -->
+            <div class="group">
+                <div class="aspect-video rounded-2xl overflow-hidden mb-5">
+                    <img src="https://picsum.photos/id/160/800/450" class="w-full h-full object-cover group-hover:scale-105 transition-transform" alt="">
+                </div>
+                <span class="text-xs text-[#C9A86C] font-semibold">THE RETURN • 28 DEC 2025</span>
+                <h3 class="font-semibold text-2xl mt-2 mb-3 group-hover:text-[#C9A86C] transition-colors">Why the World Needs the Sacred Mothers Now More Than Ever</h3>
+                <p class="text-[#5C513F] line-clamp-3">In a time of disconnection, the return of the Divine Mother offers the medicine our planet and our souls are crying for.</p>
+                <div class="mt-4 text-sm font-medium text-[#C9A86C]">Read reflection →</div>
+            </div>
+        </div>
+    </section>
+    <!-- ==================== END SECTION: JOURNAL ==================== -->
+
+    <!-- ==================== SECTION: CTA ==================== -->
+    <section id="cta-section" class="max-w-4xl mx-auto px-6 py-20 text-center">
+        <div class="rounded-3xl bg-gradient-to-br from-[#3F2E1E] to-[#2C2118] text-white px-10 py-16">
+            <h2 class="heading-serif text-5xl tracking-tight">The Mothers are calling.<br>Will you answer?</h2>
+            <p class="mt-4 text-lg text-white/80 max-w-md mx-auto">Join the circle. Receive monthly sacred stories, rituals, and reflections directly in your inbox.</p>
+            
+            <div class="mt-8 max-w-md mx-auto">
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <input type="email" placeholder="Your sacred email address" 
+                           class="flex-1 px-6 py-4 rounded-3xl bg-white/10 border border-white/30 text-white placeholder:text-white/60 focus:outline-none focus:border-[#C9A86C]">
+                    <button onclick="subscribeToNewsletter()" 
+                            class="px-9 py-4 bg-[#C9A86C] hover:bg-[#A67C52] text-[#3F2E1E] font-semibold rounded-3xl whitespace-nowrap transition-all">
+                        Enter the Temple
+                    </button>
+                </div>
+                <p class="text-xs text-white/50 mt-3">We honor your inbox as sacred space. Unsubscribe anytime.</p>
+            </div>
+        </div>
+    </section>
+    <!-- ==================== END SECTION: CTA ==================== -->
+
+    <!-- ==================== SECTION: FOOTER ==================== -->
+    <footer class="border-t border-[#EDE4D8] bg-white">
+        <div class="max-w-7xl mx-auto px-6 py-14">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-y-6">
+                <div class="flex items-center gap-x-3">
+                    <div class="w-9 h-9 rounded-2xl bg-gradient-to-br from-[#C9A86C] to-[#A67C52] flex items-center justify-center">
+                        <i class="fa-solid fa-infinity text-white"></i>
+                    </div>
+                    <span class="heading-serif text-2xl">Sacred Mothers</span>
+                </div>
+                
+                <div class="flex gap-x-8 text-sm">
+                    <a href="#" class="hover:text-[#C9A86C]">Stories</a>
+                    <a href="#" class="hover:text-[#C9A86C]">Journal</a>
+                    <a href="#" class="hover:text-[#C9A86C]">About the Project</a>
+                    <a href="#" class="hover:text-[#C9A86C]">Contact</a>
+                </div>
+                
+                <div class="text-sm text-[#5C513F]">
+                    © 2026 • Made with reverence
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- ==================== END SECTION: FOOTER ==================== -->
+
+    <!-- Mother Story Modal -->
+    <div id="mother-modal" onclick="if (event.target.id === 'mother-modal') hideMotherModal()" class="hidden fixed inset-0 bg-black/70 z-[100] flex items-center justify-center p-6">
+        <div onclick="event.stopImmediatePropagation()" class="bg-white max-w-2xl w-full rounded-3xl overflow-hidden shadow-2xl">
+            <div class="px-8 pt-8 pb-6">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <span id="modal-culture" class="px-4 py-1 text-xs font-semibold tracking-widest bg-[#C9A86C]/10 text-[#C9A86C] rounded-2xl"></span>
+                        <h3 id="modal-name" class="heading-serif text-4xl mt-3"></h3>
+                    </div>
+                    <button onclick="hideMotherModal()" class="text-3xl text-[#C9A86C] hover:text-[#3F2E1E]">&times;</button>
+                </div>
+                
+                <div id="modal-story" class="mt-8 text-[#4A3F32] story-text leading-relaxed text-[15.5px]">
+                    <!-- Story text injected by JS -->
+                </div>
+            </div>
+            
+            <div class="bg-[#FDF8F3] px-8 py-5 flex items-center justify-between border-t">
+                <div class="text-sm text-[#5C513F]">This is a living story. More chapters coming soon.</div>
+                <button onclick="hideMotherModal()" 
+                        class="px-6 py-2 text-sm font-semibold rounded-2xl border border-[#C9A86C] text-[#C9A86C] hover:bg-[#C9A86C] hover:text-white transition-all">
+                    Close
                 </button>
             </div>
         </div>
-    </header>
+    </div>
 
-    <!-- ==================== WELCOME / INTRO ==================== -->
-    <section id="about" class="max-w-4xl mx-auto px-6 pt-20 pb-16">
-        <div class="text-center mb-12">
-            <h2 class="heading-serif text-5xl md:text-6xl tracking-tight">Welcome to the Story</h2>
-        </div>
-        <div class="prose prose-lg text-[#4A3F32]">
-            <p>Welcome to <strong>The Sacred Mothers Story</strong>, a sanctuary dedicated to honoring the profound wisdom, myths, and archetypes of sacred mothers and goddesses from cultures around the world.</p>
-        </div>
-    </section>
+    <script>
+        // Tailwind script
+        function initializeTailwind() {
+            document.documentElement.style.setProperty('--accent-gold', '#C9A86C');
+        }
+        
+        // Mobile menu
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        if (mobileBtn) {
+            mobileBtn.addEventListener('click', () => {
+                const nav = document.createElement('div');
+                nav.className = `fixed inset-0 bg-white z-[200] p-6 flex flex-col`;
+                nav.innerHTML = `
+                    <div class="flex justify-between items-center mb-10">
+                        <div class="flex items-center gap-x-3">
+                            <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-[#C9A86C] to-[#A67C52] flex items-center justify-center">
+                                <i class="fa-solid fa-infinity text-white text-2xl"></i>
+                            </div>
+                            <span class="heading-serif text-3xl">Sacred Mothers</span>
+                        </div>
+                        <button class="text-4xl text-[#3F2E1E]">&times;</button>
+                    </div>
+                    <div class="flex flex-col gap-y-6 text-2xl font-medium">
+                        <a href="#stories" class="py-2">Stories</a>
+                        <a href="#mothers" class="py-2">The Mothers</a>
+                        <a href="#journal" class="py-2">Journal</a>
+                        <a href="#about" class="py-2">About</a>
+                    </div>
+                    <div class="mt-auto pt-10">
+                        <button onclick="document.getElementById('cta-section').scrollIntoView({ behavior: 'smooth' }); this.closest('.fixed').remove()" 
+                                class="w-full py-4 rounded-3xl bg-[#3F2E1E] text-white font-semibold">Begin the Journey</button>
+                    </div>
+                `;
+                document.body.appendChild(nav);
+                nav.querySelector('button').onclick = () => nav.remove();
+            });
+        }
 
-    <!-- ==================== THE SACRED MOTHERS CARDS ==================== -->
-    <section id="mothers" class="max-w-7xl mx-auto px-6 py-16 bg-white border-y border-[#EDE4D8]">
-        <div class="text-center mb-12">
-            <h2 class="heading-serif text-5xl md:text-6xl tracking-tight">Meet the Sacred Mothers</h2>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Cards for Isis, Durga, Guadalupe, Yemaya, Pachamama, Tara (same as original) -->
-            <!-- (Full card code from previous version — let me know if you need me to expand any) -->
-        </div>
-    </section>
+        // Mother Modal
+        let currentModal = null;
 
-    <!-- ==================== JOURNAL & OTHER SECTIONS ==================== -->
-    <!-- (The rest of the original template: Story section, Journal previews, CTA, Footer, Modal JS) -->
+        function showMotherModal(name, culture, story) {
+            const modal = document.getElementById('mother-modal');
+            document.getElementById('modal-name').innerText = name;
+            document.getElementById('modal-culture').innerText = culture;
+            document.getElementById('modal-story').innerHTML = `<p>${story}</p>`;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            currentModal = modal;
+        }
 
-    <!-- Full original code continues here. Since the message has length limits, reply "FULL" if you want me to send the entire thing again in one block. -->
+        function hideMotherModal() {
+            const modal = document.getElementById('mother-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
 
+        // Newsletter subscription (demo)
+        function subscribeToNewsletter() {
+            const btns = document.querySelectorAll('#cta-section button');
+            if (btns.length > 0) {
+                const originalText = btns[0].innerHTML;
+                btns[0].innerHTML = `Welcome, sister <i class="fa-solid fa-check ml-2"></i>`;
+                btns[0].disabled = true;
+                
+                setTimeout(() => {
+                    alert("Thank you for entering the temple. A welcome letter with your first sacred story is on its way to your inbox. (This is a demo — in a real deployment we'd connect this to your email service.)");
+                    if (btns[0]) {
+                        btns[0].innerHTML = originalText;
+                        btns[0].disabled = false;
+                    }
+                }, 1400);
+            }
+        }
+
+        // Keyboard escape for modal
+        document.addEventListener('keydown', function(e) {
+            if (e.key === "Escape" && currentModal && !currentModal.classList.contains('hidden')) {
+                hideMotherModal();
+            }
+        });
+
+        // Initialize everything
+        function init() {
+            initializeTailwind();
+            
+            // Optional: Add subtle animation to cards on scroll
+            console.log('%c[Sacred Mothers Blog] Template deployed successfully. Ready for your content.', 'color:#C9A86C');
+        }
+
+        window.onload = init;
+    </script>
 </body>
 </html>
