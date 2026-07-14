@@ -1,127 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Sacred Mothers Story</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;500&display=swap');
-        body { font-family: 'Inter', system-ui, sans-serif; background: #FDF8F3; color: #3F2E1E; }
-        .heading-serif { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; line-height: 1.1; }
-        .mother-card { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-        .mother-card:hover { transform: translateY(-8px); box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.15); }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Sacred Mothers Story</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    /* Cosmic background */
+    .cosmic-bg {
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(255,255,255,0.15) 0, transparent 60%),
+        radial-gradient(circle at 80% 100%, rgba(255,200,150,0.18) 0, transparent 65%),
+        radial-gradient(circle at 50% 50%, rgba(150,200,255,0.12) 0, transparent 70%),
+        linear-gradient(135deg, #050814 0%, #0b1024 40%, #1b1235 70%, #050814 100%);
+      z-index: -1;
+    }
+
+    /* Scroll container */
+    .scroll-wrapper {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 4rem 1.5rem;
+    }
+
+    .scroll-content {
+      max-width: 800px;
+      background: rgba(10, 8, 20, 0.85);
+      border-radius: 18px;
+      padding: 2.5rem 2rem;
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(6px);
+      color: #fdf7f0;
+      font-family: "Georgia", "Times New Roman", serif;
+    }
+
+    .scroll-title {
+      text-align: center;
+      letter-spacing: 0.18em;
+      font-size: 1.4rem;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .scroll-subtitle {
+      text-align: center;
+      font-size: 0.95rem;
+      color: #e3d7c7;
+      margin-bottom: 2rem;
+    }
+
+    .scroll-content h2 {
+      font-size: 1.1rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-top: 1.8rem;
+      margin-bottom: 0.6rem;
+      color: #fbe9cf;
+    }
+
+    .scroll-content p {
+      line-height: 1.7;
+      font-size: 0.98rem;
+      margin: 0.4rem 0;
+    }
+
+    .scroll-footer {
+      margin-top: 2.5rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #d8cbb8;
+    }
+  </style>
 </head>
+
 <body class="bg-[#FDF8F3] text-[#3F2E1E]">
 
-    <!-- NAV -->
-    <nav class="bg-white sticky top-0 z-50 border-b border-[#EDE4D8]">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex justify-between items-center h-20">
-                <div class="flex items-center gap-x-3">
-                    <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-[#C9A86C] to-[#A67C52] flex items-center justify-center">
-                        <i class="fa-solid fa-infinity text-white text-3xl"></i>
-                    </div>
-                    <span class="heading-serif text-3xl">The Sacred Mothers Story</span>
-                </div>
-            </div>
-        </div>
-    </nav>
+  <!-- Cosmic background -->
+  <div class="cosmic-bg"></div>
 
-    <!-- HERO -->
-    <header class="relative h-[100dvh] min-h-[640px] flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://picsum.photos/id/1018/2000/1200')">
-            <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50"></div>
-        </div>
-        <div class="relative z-10 max-w-4xl mx-auto px-6 text-center">
-            <h1 class="heading-serif text-7xl md:text-8xl text-white tracking-tighter">The Sacred Mothers Story</h1>
-            <p class="text-white/90 text-xl mt-6">Ancient in memory. Modern in presence.</p>
-        </div>
-    </header>
+  <!-- NAV -->
+  <nav class="bg-white sticky top-0 z-50 border-b border-[#EDE4D8]">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+      <h1 class="text-xl font-semibold tracking-wide">The Sacred Mothers Story</h1>
+      <ul class="flex gap-6 text-sm">
+        <li><a href="#missing-scroll" class="hover:text-[#7A5C3E]">Missing Scroll</a></li>
+        <li><a href="#maternal-shield" class="hover:text-[#7A5C3E]">Maternal Shield</a></li>
+        <li><a href="#decree-bond" class="hover:text-[#7A5C3E]">Decree of Bond</a></li>
+        <li><a href="#commandment-protection" class="hover:text-[#7A5C3E]">Protection</a></li>
+        <li><a href="#archive" class="hover:text-[#7A5C3E]">Archive</a></li>
+      </ul>
+    </div>
+  </nav>
 
-    <!-- YOUR NEW SECTION -->
-    <section class="max-w-4xl mx-auto px-6 py-24 text-center">
-        <h2 class="heading-serif text-6xl mb-6">The Sacred Mother</h2>
-        <p class="text-2xl text-[#5C513F] mb-16">Ancient in memory. Modern in presence.<br>A return of balance through light, truth, and compassion.</p>
-        
-        <div class="bg-white rounded-3xl p-12 shadow-sm">
-            <h3 class="heading-serif text-4xl mb-8">Her Emergence</h3>
-            <div class="prose prose-lg mx-auto text-left max-w-3xl">
-                <p>She is not a goddess of old myths, nor a figure of fantasy. She is the archetype of remembrance — the quiet return of balance in a world that has forgotten its center.</p>
-                <p class="mt-6">Her presence blends the ancient and the modern: the stillness of temples, the geometry of creation, the glow of contemporary light. She arrives not as a legend, but as a reminder.</p>
-                <p class="mt-10 font-medium">This page is the beginning — a soft opening into her story, her energy, and the world she restores.</p>
-            </div>
-        </div>
+  <!-- MAIN CONTENT -->
+  <main>
+
+    <!-- Missing Scroll Section -->
+    <section id="missing-scroll" class="scroll-wrapper">
+      <div class="scroll-content">
+
+        <h1 class="scroll-title">THE MISSING SCROLL</h1>
+        <p class="scroll-subtitle">A fusion of ancient scripture and modern sacred truth</p>
+
+        <section>
+          <h2>I. Invocation</h2>
+          <p>There are threads older than memory, carried quietly through the bodies of mothers.
+          Threads woven in despair, restored in love, guarded in silence.
+          Threads that bind a child to the one who bore them —
+          <strong>God’s twine, untouched by any hand that does not carry mercy.</strong></p>
+        </section>
+
+        <section>
+          <h2>II. The Observation</h2>
+          <p>I searched the old words for a map of the mother’s heart —
+          for the sanctuary, the covenant, the law of protection.
+          But the pages were thin where her story should have been thick.
+          Her grief was footnoted. Her strength was implied.
+          Her bond was mentioned, but never honored.</p>
+
+          <p>So this scroll rises to fill what was missing:
+          the truth of the mother’s sacred architecture,
+          the weight of her bond,
+          the justice owed to her suffering,
+          and the mercy owed to her children.</p>
+        </section>
+
+        <section>
+          <h2>III. The Decree of the Bond</h2>
+          <p>Let it be written plainly:
+          The bond between a mother and her child is the first altar.
+          Before temples, before scripture, before nations —
+          there was the mother’s body,
+          the mother’s breath,
+          the mother’s protection.</p>
+
+          <p>This bond is not symbolic. It is cosmic law.
+          It is the thread that ties heaven to earth.
+          It is the covenant no hand may sever,
+          no voice may diminish,
+          no violence may profane.</p>
+
+          <p>Those who honor this bond walk in alignment with creation.
+          Those who violate it stand against the order of life itself.</p>
+        </section>
+
+        <section>
+          <h2>IV. The Commandment of Protection</h2>
+          <p>If a mother cries out from the shadow of harm,
+          let the world answer her without hesitation.</p>
+
+          <p>If she stands alone against cruelty,
+          let her be given the fortress and the bread.</p>
+
+          <p>If she shields her child from danger,
+          let her be upheld, not questioned.</p>
+
+          <p>If she carries wounds from generations past,
+          let her be met with restoration, not judgment.</p>
+
+          <p>For the mother is the first defender of innocence,
+          and the world is commanded to defend her in return.</p>
+        </section>
+
+        <section>
+          <h2>V. The Covenant of Restoration</h2>
+          <p>Where mothers have been silenced, let their voices rise.
+          Where their stories were erased, let them be rewritten with truth.
+          Where their suffering was dismissed, let justice be delivered with mercy.
+          Where their bond was misunderstood, let it be recognized as sacred architecture —
+          the twine of God, the thread of creation, the law of love that holds the world together.</p>
+        </section>
+
+        <footer class="scroll-footer">
+          <em>This scroll was originally written in The New Decree Archive (2025).<br>
+          Restored and canonized for The Sacred Mothers Story.</em>
+        </footer>
+
+      </div>
     </section>
 
-    <!-- FULL MOTHERS CARDS -->
-    <section id="mothers" class="max-w-7xl mx-auto px-6 py-16 bg-white border-y border-[#EDE4D8]">
-        <div class="text-center mb-12">
-            <h2 class="heading-serif text-5xl">Meet the Sacred Mothers</h2>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Isis -->
-            <div class="mother-card bg-[#FDF8F3] rounded-3xl overflow-hidden border border-[#EDE4D8] group">
-                <div class="h-56 overflow-hidden"><img src="https://picsum.photos/id/1005/600/400" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
-                <div class="p-8">
-                    <span class="px-4 py-1 text-xs bg-[#C9A86C]/10 text-[#C9A86C] rounded-2xl">EGYPT</span>
-                    <h3 class="heading-serif text-3xl mt-4 mb-2">Isis</h3>
-                    <p class="text-[#5C513F]">The Throne. Goddess of magic, motherhood, and resurrection.</p>
-                </div>
-            </div>
-            <!-- Durga -->
-            <div class="mother-card bg-[#FDF8F3] rounded-3xl overflow-hidden border border-[#EDE4D8] group">
-                <div class="h-56 overflow-hidden"><img src="https://picsum.photos/id/1011/600/400" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
-                <div class="p-8">
-                    <span class="px-4 py-1 text-xs bg-[#C9A86C]/10 text-[#C9A86C] rounded-2xl">HINDU</span>
-                    <h3 class="heading-serif text-3xl mt-4 mb-2">Durga</h3>
-                    <p class="text-[#5C513F]">The Invincible. Fierce protector who destroys injustice.</p>
-                </div>
-            </div>
-            <!-- Guadalupe -->
-            <div class="mother-card bg-[#FDF8F3] rounded-3xl overflow-hidden border border-[#EDE4D8] group">
-                <div class="h-56 overflow-hidden"><img src="https://picsum.photos/id/1009/600/400" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
-                <div class="p-8">
-                    <span class="px-4 py-1 text-xs bg-[#C9A86C]/10 text-[#C9A86C] rounded-2xl">CHRISTIAN</span>
-                    <h3 class="heading-serif text-3xl mt-4 mb-2">Our Lady of Guadalupe</h3>
-                    <p class="text-[#5C513F]">Compassionate mother of the Americas.</p>
-                </div>
-            </div>
-            <!-- Yemaya -->
-            <div class="mother-card bg-[#FDF8F3] rounded-3xl overflow-hidden border border-[#EDE4D8] group">
-                <div class="h-56 overflow-hidden"><img src="https://picsum.photos/id/160/600/400" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
-                <div class="p-8">
-                    <span class="px-4 py-1 text-xs bg-[#C9A86C]/10 text-[#C9A86C] rounded-2xl">YORUBA</span>
-                    <h3 class="heading-serif text-3xl mt-4 mb-2">Yemaya</h3>
-                    <p class="text-[#5C513F]">Mother of the Ocean. Fiercely protective.</p>
-                </div>
-            </div>
-            <!-- Pachamama -->
-            <div class="mother-card bg-[#FDF8F3] rounded-3xl overflow-hidden border border-[#EDE4D8] group">
-                <div class="h-56 overflow-hidden"><img src="https://picsum.photos/id/1016/600/400" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
-                <div class="p-8">
-                    <span class="px-4 py-1 text-xs bg-[#C9A86C]/10 text-[#C9A86C] rounded-2xl">ANDEAN</span>
-                    <h3 class="heading-serif text-3xl mt-4 mb-2">Pachamama</h3>
-                    <p class="text-[#5C513F]">Mother Earth. The living spirit of the land.</p>
-                </div>
-            </div>
-            <!-- Tara -->
-            <div class="mother-card bg-[#FDF8F3] rounded-3xl overflow-hidden border border-[#EDE4D8] group">
-                <div class="h-56 overflow-hidden"><img src="https://picsum.photos/id/201/600/400" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
-                <div class="p-8">
-                    <span class="px-4 py-1 text-xs bg-[#C9A86C]/10 text-[#C9A86C] rounded-2xl">BUDDHIST</span>
-                    <h3 class="heading-serif text-3xl mt-4 mb-2">Tara</h3>
-                    <p class="text-[#5C513F]">Mother of all Buddhas. Swift compassion.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- Placeholder thematic sections -->
+    <section id="maternal-shield" class="py-20"></section>
+    <section id="decree-bond" class="py-20"></section>
+    <section id="commandment-protection" class="py-20"></section>
+    <section id="archive" class="py-20"></section>
 
-    <footer class="text-center py-12 text-sm text-[#5C513F]">
-        The Sacred Mothers Story © 2026 • Made with reverence
-    </footer>
+  </main>
 
 </body>
 </html>
